@@ -229,7 +229,7 @@ class User {
 
     public static function initSession($conn, $email) {
         $currentPage = basename($_SERVER['PHP_SELF']);
-        $dashboardPages = ['dashboardUser.php', 'dashboardScrum.php', 'dashboardProd.php'];
+        $dashboardPages = ['../View/dashboardUser.php', '../View/dashboardScrum.php', '../View/dashboardProd.php'];
 
         $user = User::getUserByEmail($conn, $email);
 
@@ -249,13 +249,13 @@ class User {
             }
 
             if ($_SESSION['role'] == 'user') {
-                header("Location: dashboardUser.php");
+                header("Location: $dashboardPages[0]");
                 exit();
             } else if ($_SESSION['role'] == 'scrumMaster') {
-                header("Location: dashboardScrum.php");
+                header("Location: $dashboardPages[1]");
                 exit();
             } else if ($_SESSION['role'] == 'prodOwner') {
-                header("Location: dashboardProd.php");
+                header("Location: $dashboardPages[2]");
                 exit();
             }
         } else {
@@ -265,15 +265,17 @@ class User {
     }
 
     public static function checkAuthentication() {
+        $dashboardPages = ['../View/dashboardUser.php', '../View/dashboardScrum.php', '../View/dashboardProd.php'];
+
         if (isset($_SESSION['id'])) {
             if ($_SESSION['role'] == 'user') {
-                header("Location: dashboardUser.php");
+                header("Location: $dashboardPages[0]");
                 exit();
             } else if ($_SESSION['role'] == 'scrumMaster') {
-                header("Location: dashboardScrum.php");
+                header("Location: $dashboardPages[1]");
                 exit();
             } else if ($_SESSION['role'] == 'prodOwner') {
-                header("Location: dashboardProd.php");
+                header("Location: $dashboardPages[2]");
                 exit();
             }
         } else {
