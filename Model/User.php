@@ -307,7 +307,7 @@ class User {
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $this->conn->prepare("INSERT INTO users (image, firstName, lastName, email, phoneNum, pass, role, equipeID) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
+            $stmt = $this->conn->prepare("INSERT INTO users (image, firstName, lastName, email, phoneNum, password, role, equipeID) VALUES (?, ?, ?, ?, ?, ?, ?, 0)");
             $stmt->bind_param("sssssss", $uploadPath, $firstName, $lastName, $email, $phoneNumber, $hashedPassword, $role);
             $stmt->execute();
 
