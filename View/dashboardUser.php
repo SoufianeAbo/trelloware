@@ -154,13 +154,9 @@ session_start();
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
 
-            <main class="w-full grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6 hidden" id = "ProjectsTable">
+            <main class="w-full grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6" id = "ProjectsTable">
                 <h1 class="text-3xl text-black pb-6 col-span-3">Your projects</h1>
 
-                <?php
-                    $equipeID = $_SESSION['equipeID'];
-                    $projectObj->displayProjectDetails($equipeID);
-                ?>
             </main>
         </div>
         
