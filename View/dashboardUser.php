@@ -103,7 +103,7 @@
             <a class="text-white text-3xl font-semibold uppercase hover:text-gray-300"><img src="../img/white3.png" alt=""></a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
-            <a class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item cursor-pointer" id = "ProjectsBtn">
+            <a class="flex items-center text-white bg-blue-700 opacity-75 hover:opacity-100 py-4 pl-6 nav-item cursor-pointer" id = "ProjectsBtn">
                 <i class="fa-solid fa-list-check mr-3"></i>
                 Projects
             </a>
@@ -142,7 +142,7 @@
             </div>
 
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item" id = "ProjectsBtn2">
+                <a class="flex items-center text-white opacity-75 bg-blue-700 hover:opacity-100 py-2 pl-4 nav-item" id = "ProjectsBtn2">
                     <i class="fa-solid fa-list-check mr-3"></i>
                     Projects
                 </a>
