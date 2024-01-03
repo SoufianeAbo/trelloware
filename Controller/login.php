@@ -3,7 +3,6 @@ session_start();
 include '../Model/connection.php';
 require_once '../Model/User.php';
 
-User::checkAuthentication();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["emailLog"];

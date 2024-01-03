@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'connection.php';
-require_once './includes/prodOwner.php';
+
+require_once '../Model/User.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = $_POST["firstName"];

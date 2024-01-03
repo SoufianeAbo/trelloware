@@ -21,6 +21,13 @@ class User {
         }
 
         $this->setImage($image);
+        $this->setFirstName($firstName);
+        $this->setLastName($lastName);
+        $this->setEmail($email);
+        $this->setPass($pass);
+        $this->setPhoneNum($phoneNum);
+        $this->setRole($role);
+        $this->setEquipeID($equipeID);
     }
 
     // getters
@@ -290,7 +297,7 @@ class User {
                 exit();
             }
         } else {
-            return;
+            return 0;
         }
     }
 
@@ -302,7 +309,7 @@ class User {
         $password = $this->getPass();
         $teamImage = $this->getImage();
 
-        $uploadDir = './img/';
+        $uploadDir = '../img/';
         $uploadPath = $uploadDir . basename($teamImage['name']);
         $role = "user";
 
@@ -330,7 +337,7 @@ class User {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
 
-                if (password_verify($password, $row['pass'])) {
+                if (password_verify($password, $row['password'])) {
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['image'] = $row['image'];
                     $_SESSION['firstName'] = $row['firstName'];
@@ -341,13 +348,13 @@ class User {
                     $_SESSION['equipeID'] = $row['equipeID'];
 
                     if ($_SESSION['role'] == 'user') {
-                        header("Location: dashboardUser.php");
+                        header("Location: ../dashboardUser.php");
                         exit();
                     } else if ($_SESSION['role'] == 'scrumMaster') {
-                        header("Location: dashboardScrum.php");
+                        header("Location: ../dashboardScrum.php");
                         exit();
                     } else if ($_SESSION['role'] == 'prodOwner') {
-                        header("Location: dashboardProd.php");
+                        header("Location: ../dashboardProd.php");
                         exit();
                     }
                 } else {
