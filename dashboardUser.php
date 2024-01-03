@@ -4,6 +4,11 @@ require_once './Controller/Project.php';
 require_once './Model/Project.php';
 require_once './Model/User.php';
 
+if (!isset($_SESSION['id'])) {
+    Header ("Location: login.php");
+    exit;
+}
+
 $firstName = $_SESSION["firstName"];
 $lastName = $_SESSION["lastName"];
 $email = $_SESSION["email"];
