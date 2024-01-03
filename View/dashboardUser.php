@@ -107,7 +107,7 @@
                 <i class="fa-solid fa-list-check mr-3"></i>
                 Projects
             </a>
-            <a class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item cursor-pointer" id = "ProjectsBtn">
+            <a class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item cursor-pointer" id = "TasksBtn">
                 <i class="fa-solid fa-bars-progress mr-3"></i>
                 Tasks
             </a>
@@ -252,6 +252,9 @@
                     </dialog>
                 </div>
 
+            </main>
+
+            <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4 hidden" id = "TasksTable">
             </main>
         
     </div>
