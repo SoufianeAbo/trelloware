@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require_once 'Model/Project.php';
 require_once 'Controller/Project.php';
 
@@ -12,6 +10,13 @@ if ($db->connect_error) {
 $model = new Project_Model($db);
 $controller = new Project_Controller($model);
 
-$controller->handleRequest();
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 
+if ($action === 'add_project') {
+    $controller->handleRequest();
+} elseif ($action === 'edit_project') {
+    $controller->editProject();
+} else {
+    echo "Invalid action.";
+}
 ?>

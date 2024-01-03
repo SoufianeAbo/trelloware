@@ -172,13 +172,14 @@
                             <div class = "flex flex-row justify-between">
                                 <button class="btn btn-active btn-primary text-white" onclick="<?php echo 'modalModify' . $project['id']?>.showModal()"><i class="fa-solid fa-gear"></i>Modify</button>
 
-                                <form method="POST" action = "../index.php?add_project" enctype="multipart/form-data">
+                                <form method="POST" action = "../index.php?action=edit_project" enctype="multipart/form-data">
                                     <dialog id="<?php echo 'modalModify' . $project['id']?>" class="modal modal-bottom sm:modal-middle">
                                         <div class="modal-box">
                                         <label class="form-control w-full max-w-xs">
                                             <div class="label">
                                                 <span class="label-text">What is the project name?</span>
                                             </div>
+                                            <input type="text" class = "hidden" name = "project_id" placeholder="Project ID" class="input input-bordered w-full max-w-xs" value = "<?php echo $project['id']?>" />
                                             <input type="text" name = "project_name" placeholder="Project name" class="input input-bordered w-full max-w-xs" value = "<?php echo $project['name']?>" />
                                             </label>
                                             <div class="label mt-4">
@@ -211,7 +212,7 @@
                 <div class = "card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_5.showModal()">
                     <h1 class = "text-8xl m-auto text-blue-400">+</h1>
 
-                    <form method="POST" action = "../index.php?add_project" enctype="multipart/form-data">
+                    <form method="POST" action = "../index.php?action=add_project" enctype="multipart/form-data">
                     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
                         <div class="modal-box">
                         <label class="form-control w-full max-w-xs">

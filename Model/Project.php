@@ -17,6 +17,20 @@ class Project_Model {
         return $result;
     }
 
+    public function updateProject($projectId, $name, $description, $image, $projectUser) {
+        $name = $this->db->real_escape_string($name);
+        $description = $this->db->real_escape_string($description);
+        $projectUser = $this->db->real_escape_string($projectUser);
+    
+        $query = "UPDATE projects 
+                  SET name = '$name', description = '$description', image = '$image', projectUser = '$projectUser'
+                  WHERE id = $projectId";
+        
+        $result = $this->db->query($query);
+    
+        return $result;
+    }
+
     public function getProjects($projectUser) {
         $projectUser = $this->db->real_escape_string($projectUser);
 
