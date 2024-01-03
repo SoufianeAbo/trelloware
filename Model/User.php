@@ -97,6 +97,15 @@ class User {
         $this->equipeID = $equipeID;
     }
 
+    public static function logout() {
+        session_unset();
+
+        session_destroy();
+
+        header("Location: login.php");
+        exit;
+    }
+
     public function getAllUsers() {
         $sql = "SELECT * FROM users";
         $result = $this->conn->query($sql);
