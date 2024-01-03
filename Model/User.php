@@ -14,11 +14,13 @@ class User {
     private $equipeID;
 
     public function __construct($image, $firstName, $lastName, $email, $pass, $phoneNum, $role, $equipeID) {
-        $this->conn = new mysqli('localhost', 'root', '', 'datawareSite');
+        $this->conn = new mysqli('localhost', 'root', '', 'trelloware');
 
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+
+        $this->setImage($image);
     }
 
     // getters
@@ -229,7 +231,7 @@ class User {
 
     public static function initSession($conn, $email) {
         $currentPage = basename($_SERVER['PHP_SELF']);
-        $dashboardPages = ['../View/dashboardUser.php', '../View/dashboardScrum.php', '../View/dashboardProd.php'];
+        $dashboardPages = ['../dashboardUser.php', '../dashboardScrum.php', '../dashboardProd.php'];
 
         $user = User::getUserByEmail($conn, $email);
 
@@ -265,7 +267,7 @@ class User {
     }
 
     public static function checkAuthentication() {
-        $dashboardPages = ['../View/dashboardUser.php', '../View/dashboardScrum.php', '../View/dashboardProd.php'];
+        $dashboardPages = ['../dashboardUser.php', '../dashboardScrum.php', '../dashboardProd.php'];
 
         if (isset($_SESSION['id'])) {
             if ($_SESSION['role'] == 'user') {

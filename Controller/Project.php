@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class Project_Controller {
     private $model;
     private $view;
@@ -30,6 +32,11 @@ class Project_Controller {
         } else {
             $this->view->render();
         }
+    }
+
+    public function getProjects() {
+        $result = $this->model->getProjects($_SESSION['id']);
+        return $result;
     }
 }
 ?>

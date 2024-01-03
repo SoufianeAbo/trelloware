@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -157,23 +154,59 @@ session_start();
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
 
-            <main class="w-full grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6 gap-4" id = "ProjectsTable">
-                <h1 class="text-3xl text-black pb-6 col-span-3">Your projects</h1>
-
-                <div class="card card-compact w-96 bg-blue-950 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <div class = "flex flex-row justify-between">
-                            <h2 class="card-title text-white">Project</h2>
-                            <div class="avatar">
-                                <div class="w-8 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <main class="w-full grid grid-cols-1 lg:grid-cols-3 p-6 gap-4" id = "ProjectsTable">
+                <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your projects</h1>
+                <?php foreach ($projects as $project): ?>
+                    <div class="card card-compact w-96 bg-white shadow-xl">
+                        <figure><img src="<?php echo $project['image']; ?>" alt="Project Image" /></figure>
+                        <div class="card-body">
+                            <div class="flex flex-row justify-between">
+                                <h2 class="card-title text-black"><?php echo $project['name']; ?></h2>
+                                <div class="avatar">
+                                    <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img src="<?php echo $userObj->getImage(); ?>" alt="User Avatar" />
+                                    </div>
                                 </div>
                             </div>
+                            <p class = "text-black"><?php echo $project['description']; ?></p>
+                            <div class = "flex flex-row justify-between">
+                                <button class="btn btn-active btn-primary text-white" onclick="<?php echo 'modalModify' . $project['id']?>.showModal()"><i class="fa-solid fa-gear"></i>Modify</button>
+
+                                <form method="POST" action = "../index.php?add_project" enctype="multipart/form-data">
+                                    <dialog id="<?php echo 'modalModify' . $project['id']?>" class="modal modal-bottom sm:modal-middle">
+                                        <div class="modal-box">
+                                        <label class="form-control w-full max-w-xs">
+                                            <div class="label">
+                                                <span class="label-text">What is the project name?</span>
+                                            </div>
+                                            <input type="text" name = "project_name" placeholder="Project name" class="input input-bordered w-full max-w-xs" value = "<?php echo $project['name']?>" />
+                                            </label>
+                                            <div class="label mt-4">
+                                                <span class="label-text">Choose a picture for your project</span>
+                                            </div>
+                                            <input type="file" name = "project_image" class="file-input w-full max-w-xs" />
+                                            <label class="form-control">
+                                                <div class="label">
+                                                    <span class="label-text">Description for your project</span>
+                                                </div>
+                                                <textarea name = "project_description" class="textarea textarea-bordered h-24 resize-none" placeholder="Description"><?php echo $project['description']?></textarea>
+                                            </label>
+                                            <button class="btn btn-success absolute mt-6">Submit</button>
+                                            </form>
+                                            <div class="modal-action">
+                                                <form method = "dialog">
+                                                    <button class="btn">Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
+
+                                
+                                <button class="btn btn-active btn-error text-white"><i class="fa-solid fa-trash"></i>Delete</button>
+                            </div>
                         </div>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
                     </div>
-                </div>
+                <?php endforeach; ?>
 
                 <div class = "card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_5.showModal()">
                     <h1 class = "text-8xl m-auto text-blue-400">+</h1>
@@ -209,7 +242,6 @@ session_start();
                 </div>
 
             </main>
-        </div>
         
     </div>
 

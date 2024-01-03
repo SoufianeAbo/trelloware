@@ -16,5 +16,19 @@ class Project_Model {
 
         return $result;
     }
+
+    public function getProjects($projectUser) {
+        $projectUser = $this->db->real_escape_string($projectUser);
+
+        $query = "SELECT * FROM projects WHERE projectUser = '$projectUser'";
+        $result = $this->db->query($query);
+
+        $projects = array();
+        while ($row = $result->fetch_assoc()) {
+            $projects[] = $row;
+        }
+
+        return $projects;
+    }
 }
 ?>
