@@ -16,6 +16,8 @@ if ($action === 'add_project') {
     $controller->handleRequest();
 } elseif ($action === 'edit_project') {
     $controller->editProject();
+} elseif ($action === 'delete_project') {
+    $controller->deleteProject();
 } else {
     echo "Invalid action.";
 }

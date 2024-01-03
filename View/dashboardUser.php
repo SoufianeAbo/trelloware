@@ -154,7 +154,7 @@
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
 
-            <main class="w-full grid grid-cols-1 lg:grid-cols-3 p-6 gap-4" id = "ProjectsTable">
+            <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4" id = "ProjectsTable">
                 <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your projects</h1>
                 <?php foreach ($projects as $project): ?>
                     <div class="card card-compact w-96 bg-white shadow-xl">
@@ -202,8 +202,10 @@
                                         </div>
                                     </dialog>
 
-                                
-                                <button class="btn btn-active btn-error text-white"><i class="fa-solid fa-trash"></i>Delete</button>
+                                <form method = "POST" action = "../index.php?action=delete_project">
+                                    <input type="text" class = "hidden" name = "project_id" placeholder="Project ID" class="input input-bordered w-full max-w-xs" value = "<?php echo $project['id']?>" />
+                                    <button class="btn btn-active btn-error text-white"><i class="fa-solid fa-trash"></i>Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

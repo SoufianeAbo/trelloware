@@ -60,6 +60,24 @@ class Project_Controller {
         }
     }
 
+    public function deleteProject() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $projectId = $_POST['project_id'];
+
+            $result = $this->model->deleteProject($projectId);
+
+            if ($result) {
+                $_SESSION['success_message'] = "Project successfully added!";
+                Header ("Location: ../dashboardUser.php");
+                exit;
+            } else {
+                echo "Error adding project to the database.";
+            }
+        } else {
+            $this->view->render();
+        }
+    }
+
     public function getProjects() {
         $result = $this->model->getProjects($_SESSION['id']);
         return $result;

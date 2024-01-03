@@ -31,6 +31,15 @@ class Project_Model {
         return $result;
     }
 
+    public function deleteProject($projectId) {
+        $projectId = $this->db->real_escape_string($projectId);
+    
+        $query = "DELETE FROM projects WHERE id = $projectId";
+        $result = $this->db->query($query);
+    
+        return $result;
+    }    
+
     public function getProjects($projectUser) {
         $projectUser = $this->db->real_escape_string($projectUser);
 
