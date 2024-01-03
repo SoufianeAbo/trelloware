@@ -107,6 +107,10 @@
                 <i class="fa-solid fa-list-check mr-3"></i>
                 Projects
             </a>
+            <a class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item cursor-pointer" id = "ProjectsBtn">
+                <i class="fa-solid fa-bars-progress mr-3"></i>
+                Tasks
+            </a>
         </nav>
         <a href="logout.php" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-up mr-3"></i>
@@ -145,6 +149,10 @@
                 <a class="flex items-center text-white opacity-75 bg-blue-700 hover:opacity-100 py-2 pl-4 nav-item" id = "ProjectsBtn2">
                     <i class="fa-solid fa-list-check mr-3"></i>
                     Projects
+                </a>
+                <a class="flex items-center text-white opacity-75 bg-blue-700 hover:opacity-100 py-2 pl-4 nav-item" id = "TasksBtn2">
+                    <i class="fa-solid fa-bars-progress mr-3"></i>
+                    Tasks
                 </a>
                 <button onclick="window.location.href='logout.php';" class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                     <i class="fas fa-sign-out-alt mr-3"></i> Sign Out
