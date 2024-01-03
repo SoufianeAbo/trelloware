@@ -11,6 +11,9 @@ session_start();
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="./js/dashboard.js" defer></script>
     <script src="https://kit.fontawesome.com/736a1ef302.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.5.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -154,8 +157,56 @@ session_start();
     
         <div class="w-full overflow-x-hidden border-t flex flex-col">
 
-            <main class="w-full grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6" id = "ProjectsTable">
+            <main class="w-full grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-6 gap-4" id = "ProjectsTable">
                 <h1 class="text-3xl text-black pb-6 col-span-3">Your projects</h1>
+
+                <div class="card card-compact w-96 bg-blue-950 shadow-xl">
+                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                    <div class="card-body">
+                        <div class = "flex flex-row justify-between">
+                            <h2 class="card-title text-white">Project</h2>
+                            <div class="avatar">
+                                <div class="w-8 rounded-full">
+                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    </div>
+                </div>
+
+                <div class = "card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_5.showModal()">
+                    <h1 class = "text-8xl m-auto text-blue-400">+</h1>
+
+                    <form method="POST" action = "../index.php?add_project" enctype="multipart/form-data">
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                        <label class="form-control w-full max-w-xs">
+                            <div class="label">
+                                <span class="label-text">What is the project name?</span>
+                            </div>
+                            <input type="text" name = "project_name" placeholder="Project name" class="input input-bordered w-full max-w-xs" />
+                            </label>
+                            <div class="label mt-4">
+                                <span class="label-text">Choose a picture for your project</span>
+                            </div>
+                            <input type="file" name = "project_image" class="file-input w-full max-w-xs" />
+                            <label class="form-control">
+                                <div class="label">
+                                    <span class="label-text">Description for your project</span>
+                                </div>
+                                <textarea name = "project_description" class="textarea textarea-bordered h-24 resize-none" placeholder="Description"></textarea>
+                            </label>
+                            <button class="btn btn-success absolute mt-6">Submit</button>
+                            </form>
+                            <div class="modal-action">
+                                <form method = "dialog">
+                                    <button class="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+                </div>
 
             </main>
         </div>
