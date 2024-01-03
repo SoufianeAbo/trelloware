@@ -255,6 +255,12 @@
             </main>
 
             <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4 hidden" id = "TasksTable">
+                <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your tasks</h1>
+                <div class = "row-span-5 col-span-3 bg-blue-100 h-96 border-2 border-dashed border-blue-400 rounded">
+                    <div class = "flex justify-around mt-4">
+                        <h1 class = "text-xl">You don't have any project selected right now.</h1>
+                    </div>
+                </div>
             </main>
         
     </div>
