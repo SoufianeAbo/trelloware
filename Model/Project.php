@@ -83,6 +83,24 @@ class Project_Model {
         return $tasks;
     }
 
+    public function getTasksByProjectIdDeadline($projectId) {
+        $projectId = $this->db->real_escape_string($projectId);
+    
+        $query = "SELECT * FROM tasks WHERE projectId = '$projectId' ORDER BY status, deadline DESC";
+        $result = $this->db->query($query);
+    
+        $tasks = [];
+    
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $tasks[] = $row;
+            }
+            $result->free_result();
+        }
+    
+        return $tasks;
+    }
+
     public function deleteTask($taskId) {
         $taskId = $this->db->real_escape_string($taskId);
     

@@ -24,9 +24,14 @@ $controller = new Project_Controller($model);
 
 $projects = $controller->getProjects();
 $projectId = isset($_GET['projectId']) ? $_GET['projectId'] : null;
+$sortByDeadline = isset($_GET['sortByDeadline']) ? $_GET['sortByDeadline'] : null;
 
 if ($projectId) {
-    $tasks = $controller->showTasks($_GET['projectId']);
+    if ($sortByDeadline) {
+        $tasks = $controller->showTasksDeadline($_GET['projectId']);
+    } else {
+        $tasks = $controller->showTasks($_GET['projectId']);
+    }
 
     $tasksByStatus = [
         0 => [],

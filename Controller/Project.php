@@ -110,6 +110,12 @@ class Project_Controller {
         return $tasks;
     }
 
+    public function showTasksDeadline($projectId) {
+        $tasks = $this->model->getTasksByProjectIdDeadline($projectId);
+    
+        return $tasks;
+    }
+
     public function deleteTask($taskId) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $this->model->deleteTask($taskId);

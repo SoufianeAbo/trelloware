@@ -264,6 +264,11 @@
     <?php if ($projectId): ?>
         <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your tasks</h1>
 
+        <button onclick =  "window.location.href = './dashboardUser.php?projectId=<?php echo $projectId; ?>&sortByDeadline=true'" class="btn lg:col-span-3 col-span-1 w-42 justify-self-end absolute z-40 bg-blue-400 text-white border-0">
+            Sort by Deadline
+            <i class="fa-solid fa-clock"></i>
+        </button>
+
         <div class = "flex flex-col items-center gap-4">
             <h1 class="text-3xl text-black pb-6">To Do</h1>
             <?php foreach ($tasksByStatus[0] as $task): ?>
