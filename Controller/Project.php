@@ -82,5 +82,25 @@ class Project_Controller {
         $result = $this->model->getProjects($_SESSION['id']);
         return $result;
     }
+
+    public function addTasks() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['tasktitle'];
+            $status = $_POST['status'];
+            $projectUser = $_POST['projectid'];
+
+            $result = $this->model->insertTask($title, $status, $projectUser);
+
+            if ($result) {
+                $_SESSION['success_message'] = "Project successfully added!";
+                Header ("Location: ../dashboardUser.php?projectId=$projectUser");
+                exit;
+            } else {
+                echo "Error adding project to the database.";
+            }
+        } else {
+            $this->view->render();
+        }
+    }
 }
 ?>

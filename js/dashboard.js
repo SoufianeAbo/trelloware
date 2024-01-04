@@ -38,3 +38,9 @@ projectsBtn2.addEventListener("click", showProjects);
 tasksBtn.addEventListener("click", showTasks);
 tasksBtn2.addEventListener("click", showTasks);
 
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get('projectId');
+
+if (projectId) {
+    showTasks();
+}

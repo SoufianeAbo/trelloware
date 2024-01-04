@@ -23,6 +23,7 @@ $model = new Project_Model($db);
 $controller = new Project_Controller($model);
 
 $projects = $controller->getProjects();
+$projectId = isset($_GET['projectId']) ? $_GET['projectId'] : null;
 
 include './View/dashboardUser.php';
 ?>

@@ -176,11 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class = "text-black"><?php echo $project['description']; ?></p>
-                            <div class = "flex flex-row justify-between">
-                                <button class="btn btn-active btn-primary text-white" onclick="<?php echo 'modalModify' . $project['id']?>.showModal()"><i class="fa-solid fa-gear"></i>Modify</button>
-
-                                <form method="POST" action = "../index.php?action=edit_project" enctype="multipart/form-data">
+                            <form method="POST" action = "../index.php?action=edit_project" enctype="multipart/form-data">
                                     <dialog id="<?php echo 'modalModify' . $project['id']?>" class="modal modal-bottom sm:modal-middle">
                                         <div class="modal-box">
                                         <label class="form-control w-full max-w-xs">
@@ -209,7 +205,13 @@
                                             </div>
                                         </div>
                                     </dialog>
+                            <p class = "text-black"><?php echo $project['description']; ?></p>
+                            <div class = "flex flex-row justify-between">
+                                <button class="btn btn-active btn-primary text-white" onclick="<?php echo 'modalModify' . $project['id']?>.showModal()"><i class="fa-solid fa-gear"></i>Modify</button>
 
+                                <form method = "POST" action = "./dashboardUser.php?projectId=<?php echo $project['id']?>">
+                                    <button class="btn btn-active btn-success text-white"><i class="fa-solid fa-bars-progress"></i>Tasks</button>
+                                </form>
                                 <form method = "POST" action = "../index.php?action=delete_project">
                                     <input type="text" class = "hidden" name = "project_id" placeholder="Project ID" class="input input-bordered w-full max-w-xs" value = "<?php echo $project['id']?>" />
                                     <button class="btn btn-active btn-error text-white"><i class="fa-solid fa-trash"></i>Delete</button>
@@ -254,14 +256,82 @@
 
             </main>
 
-            <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4 hidden" id = "TasksTable">
-                <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your tasks</h1>
-                <div class = "row-span-5 col-span-3 bg-blue-100 h-96 border-2 border-dashed border-blue-400 rounded">
-                    <div class = "flex justify-around mt-4">
-                        <h1 class = "text-xl">You don't have any project selected right now.</h1>
+            <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4 hidden" id="TasksTable">
+    <?php
+        // Check if projectId exists in the URL
+        $projectId = isset($_GET['projectId']) ? $_GET['projectId'] : null;
+    ?>
+
+    <?php if ($projectId): ?>
+        <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your tasks</h1>
+
+        <div class = "flex flex-col justify-center items-center gap-4">
+            <h1 class="text-3xl text-black pb-6">To Do</h1>
+            <div class="card w-96 bg-info-content shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">My task</h2>
+                    <div class="card-actions">
+                        <div class = "flex flex-row justify-between w-full">
+                            <div class = "flex flex-row gap-2">
+                                <button class="btn btn-circle hover:bg-blue-500 hover:text-black">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="btn btn-circle hover:bg-red-500 hover:text-black">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+
+                            <div class = "flex flex-row gap-2">
+                                <button class="btn btn-circle btn-primary">
+                                    <i class="fa-solid fa-spinner"></i>
+                                </button>
+
+                                <button class="btn btn-circle btn-accent">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </main>
+            </div>
+
+            <div class = "card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_6.showModal()">
+                    <h1 class = "text-8xl m-auto text-blue-400">+</h1>
+
+                    <form method="POST" action = "../index.php?action=add_task" enctype="multipart/form-data">
+                    <dialog id="my_modal_6" class="modal modal-bottom sm:modal-middle">
+                        <div class="modal-box">
+                        <label class="form-control w-full max-w-xs">
+                            <div class="label">
+                                <span class="label-text">Task title</span>
+                            </div>
+                            <input type="text" name = "tasktitle" placeholder="Your task" class="input input-bordered w-full max-w-xs" />
+                            <input type="text" name = "status" class="input input-bordered w-full max-w-xs hidden" value = "0" />
+                            <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                            <button class="btn btn-success hidden">Submit</button>
+                            </form>
+                            <div class="modal-action">
+                                <form method = "dialog">
+                                    <button class="btn">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
+                </div>
+        </div>
+
+        <div class = "flex flex-col items-center">
+            <h1 class="text-3xl text-black pb-6">Doing</h1>
+        </div>
+
+        <div class = "flex flex-col items-center">
+            <h1 class="text-3xl text-black pb-6">Done</h1>
+        </div>
+    <?php else: ?>
+        <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">You don't have any project selected right now.</h1>
+        </div>
+    <?php endif; ?>
         
     </div>
 

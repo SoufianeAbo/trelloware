@@ -53,5 +53,16 @@ class Project_Model {
 
         return $projects;
     }
+
+    public function insertTask($title, $status, $projectid) {
+        $title = $this->db->real_escape_string($title);
+        $status = $this->db->real_escape_string($status);
+        $projectid = $this->db->real_escape_string($projectid);
+
+        $query = "INSERT INTO tasks (title, status, projectid) VALUES ('$title', '$status', '$projectid')";
+        $result = $this->db->query($query);
+
+        return $result;
+    }
 }
 ?>

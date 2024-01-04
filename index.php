@@ -18,6 +18,8 @@ if ($action === 'add_project') {
     $controller->editProject();
 } elseif ($action === 'delete_project') {
     $controller->deleteProject();
+} elseif ($action === 'add_task') {
+    $controller->addTasks();
 } else {
     echo "Invalid action.";
 }
