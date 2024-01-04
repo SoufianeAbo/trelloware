@@ -126,5 +126,23 @@ class Project_Controller {
             $this->view->render();
         }
     }
+
+    public function updateTaskStatus($taskId, $status) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $projectId = $_POST['projectid'];
+
+            $result = $this->model->updateTaskStatus($taskId, $status);
+
+            if ($result) {
+                $_SESSION['success_message'] = "Project successfully added!";
+                Header ("Location: ../dashboardUser.php?projectId=$projectId");
+                exit;
+            } else {
+                echo "Error adding project to the database.";
+            }
+        } else {
+            $this->view->render();
+        }
+    }
 }
 ?>

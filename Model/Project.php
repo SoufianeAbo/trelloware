@@ -91,5 +91,18 @@ class Project_Model {
     
         return $result;
     }
+
+    public function updateTaskStatus($taskId, $status) {
+        $taskId = $this->db->real_escape_string($taskId);
+        $status = $this->db->real_escape_string($status);
+    
+        $query = "UPDATE tasks
+                  SET status = $status
+                  WHERE id = $taskId";
+        
+        $result = $this->db->query($query);
+    
+        return $result;
+    }
 }
 ?>

@@ -264,7 +264,7 @@
     <?php if ($projectId): ?>
         <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">Your tasks</h1>
 
-        <div class = "flex flex-col justify-center items-center gap-4">
+        <div class = "flex flex-col items-center gap-4">
             <h1 class="text-3xl text-black pb-6">To Do</h1>
             <?php foreach ($tasksByStatus[0] as $task): ?>
                 <div class="card w-96 bg-white shadow-xl">
@@ -291,13 +291,19 @@
                                 </div>
 
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle btn-primary">
-                                        <i class="fa-solid fa-spinner"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=1" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fa-solid fa-spinner"></i>
+                                        </button>
+                                    </form>
 
-                                    <button class="btn btn-circle btn-accent">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=2" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-accent">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

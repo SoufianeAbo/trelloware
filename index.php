@@ -24,6 +24,10 @@ if ($action === 'add_project') {
 } elseif ($action === 'delete_task') {
     $taskID = $_GET['task_id'];
     $controller->deleteTask($taskID);
+} elseif ($action === 'change_status') {
+    $taskID = $_GET['task_id'];
+    $status = $_GET['status'];
+    $controller->updateTaskStatus($taskID, $status);
 } else {
     echo "Invalid action.";
 }
