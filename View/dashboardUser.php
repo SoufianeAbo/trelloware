@@ -258,7 +258,6 @@
 
             <main class="w-full grid grid-flow-row grid-cols-1 lg:grid-cols-3 p-6 gap-4 hidden" id="TasksTable">
     <?php
-        // Check if projectId exists in the URL
         $projectId = isset($_GET['projectId']) ? $_GET['projectId'] : null;
     ?>
 
@@ -267,17 +266,22 @@
 
         <div class = "flex flex-col justify-center items-center gap-4">
             <h1 class="text-3xl text-black pb-6">To Do</h1>
-            <div class="card w-96 bg-info-content shadow-xl">
-                <div class="card-body">
-                    <h2 class="card-title">My task</h2>
-                    <div class="card-actions">
+            <div class="card w-96 bg-white shadow-xl">
+                <div class="card-body p-0">
+                    <div class = "bg-blue-500 w-full p-4 rounded-t-lg flex flex-row justify-between">
+                        <h2 class="card-title text-white">My task</h2>
+                        <div class = "bg-sky-500 px-2 rounded">
+                            <p class = "text-white"><i class="fa-solid fa-clock mr-2 my-2"></i>2023-12-01</p>
+                        </div>
+                    </div>
+                    <div class="card-actions p-6">
                         <div class = "flex flex-row justify-between w-full">
                             <div class = "flex flex-row gap-2">
-                                <button class="btn btn-circle hover:bg-blue-500 hover:text-black">
+                                <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
                                     <i class="fa-solid fa-pen"></i>
                                 </button>
 
-                                <button class="btn btn-circle hover:bg-red-500 hover:text-black">
+                                <button class="btn btn-circle bg-red-500 text-black border-none hover:bg-red-600 hover:text-black">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -307,6 +311,10 @@
                                 <span class="label-text">Task title</span>
                             </div>
                             <input type="text" name = "tasktitle" placeholder="Your task" class="input input-bordered w-full max-w-xs" />
+                            <div class="label">
+                                <span class="label-text">Deadline</span>
+                            </div>
+                            <input type="text" name = "deadline" placeholder="Deadline of the task" class="input input-bordered w-full max-w-xs" />
                             <input type="text" name = "status" class="input input-bordered w-full max-w-xs hidden" value = "0" />
                             <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
                             <button class="btn btn-success hidden">Submit</button>

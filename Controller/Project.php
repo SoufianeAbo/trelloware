@@ -88,8 +88,9 @@ class Project_Controller {
             $title = $_POST['tasktitle'];
             $status = $_POST['status'];
             $projectUser = $_POST['projectid'];
+            $deadline = $_POST['deadline'];
 
-            $result = $this->model->insertTask($title, $status, $projectUser);
+            $result = $this->model->insertTask($title, $status, $projectUser, $deadline);
 
             if ($result) {
                 $_SESSION['success_message'] = "Project successfully added!";
@@ -101,6 +102,12 @@ class Project_Controller {
         } else {
             $this->view->render();
         }
+    }
+
+    public function showTasks($projectId) {
+        $tasks = $this->model->getTasksByProjectId($projectId);
+    
+        return $tasks;
     }
 }
 ?>

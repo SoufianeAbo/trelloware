@@ -54,15 +54,33 @@ class Project_Model {
         return $projects;
     }
 
-    public function insertTask($title, $status, $projectid) {
+    public function insertTask($title, $status, $projectid, $deadline) {
         $title = $this->db->real_escape_string($title);
         $status = $this->db->real_escape_string($status);
         $projectid = $this->db->real_escape_string($projectid);
 
-        $query = "INSERT INTO tasks (title, status, projectid) VALUES ('$title', '$status', '$projectid')";
+        $query = "INSERT INTO tasks (title, status, projectid, deadline) VALUES ('$title', '$status', '$projectid', '$deadline')";
         $result = $this->db->query($query);
 
         return $result;
+    }
+
+    public function getTasksByProjectId($projectId) {
+        $projectId = $this->db->real_escape_string($projectId);
+    
+        $query = "SELECT * FROM tasks WHERE projectId = '$projectId'";
+        $result = $this->db->query($query);
+    
+        $tasks = [];
+    
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $tasks[] = $row;
+            }
+            $result->free_result();
+        }
+    
+        return $tasks;
     }
 }
 ?>
