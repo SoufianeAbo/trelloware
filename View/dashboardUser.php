@@ -278,7 +278,7 @@
                         <div class="card-actions p-6">
                             <div class="flex flex-row justify-between w-full">
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black" onclick="taskmodal_<?php echo $task['id']?>.showModal()">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
 
@@ -354,7 +354,7 @@
                         <div class="card-actions p-6">
                             <div class="flex flex-row justify-between w-full">
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black" onclick="taskmodal_<?php echo $task['id']?>.showModal()">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
 
@@ -405,7 +405,7 @@
                         <div class="card-actions p-6">
                             <div class="flex flex-row justify-between w-full">
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black" onclick="taskmodal_<?php echo $task['id']?>.showModal()">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
 
@@ -445,6 +445,31 @@
         <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">You don't have any project selected right now.</h1>
         </div>
     <?php endif; ?>
+
+    <?php foreach ($tasks as $task): ?>
+        <form method="POST" action = "../index.php?action=edit_task&task_id=<?php echo $task['id']?>" enctype="multipart/form-data">
+            <dialog id="taskmodal_<?php echo $task['id']?>" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text">Task title</span>
+                    </div>
+                    <input type="text" name = "tasktitle" placeholder="Your task" class="input input-bordered w-full max-w-xs" value = "<?php echo $task['title']?>" />
+                    <div class="label">
+                        <span class="label-text">Deadline</span>
+                    </div>
+                    <input type="text" name = "deadline" placeholder="Deadline of the task" class="input input-bordered w-full max-w-xs" value = "<?php echo $task['deadline']?>" />
+                    <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                    <button class="btn btn-success hidden">Submit</button>
+                    </form>
+                    <div class="modal-action">
+                        <form method = "dialog">
+                            <button class="btn" onclick="stoppedStatus()">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+    <?php endforeach; ?>
         
     </div>
 
