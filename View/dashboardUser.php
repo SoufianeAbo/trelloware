@@ -266,41 +266,46 @@
 
         <div class = "flex flex-col justify-center items-center gap-4">
             <h1 class="text-3xl text-black pb-6">To Do</h1>
-            <div class="card w-96 bg-white shadow-xl">
-                <div class="card-body p-0">
-                    <div class = "bg-blue-500 w-full p-4 rounded-t-lg flex flex-row justify-between">
-                        <h2 class="card-title text-white">My task</h2>
-                        <div class = "bg-sky-500 px-2 rounded">
-                            <p class = "text-white"><i class="fa-solid fa-clock mr-2 my-2"></i>2023-12-01</p>
-                        </div>
-                    </div>
-                    <div class="card-actions p-6">
-                        <div class = "flex flex-row justify-between w-full">
-                            <div class = "flex flex-row gap-2">
-                                <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-
-                                <button class="btn btn-circle bg-red-500 text-black border-none hover:bg-red-600 hover:text-black">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+            <?php foreach ($tasksByStatus[0] as $task): ?>
+                <div class="card w-96 bg-white shadow-xl">
+                    <div class="card-body p-0">
+                        <div class="bg-gray-800 w-full p-4 rounded-t-lg flex flex-row justify-between">
+                            <h2 class="card-title text-white"><?php echo $task['title']; ?></h2>
+                            <div class="bg-sky-500 px-2 rounded">
+                                <p class="text-white"><i class="fa-solid fa-clock mr-2 my-2"></i><?php echo $task['deadline']; ?></p>
                             </div>
+                        </div>
+                        <div class="card-actions p-6">
+                            <div class="flex flex-row justify-between w-full">
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
 
-                            <div class = "flex flex-row gap-2">
-                                <button class="btn btn-circle btn-primary">
-                                    <i class="fa-solid fa-spinner"></i>
-                                </button>
+                                    <form action="../index.php?action=delete_task&task_id=<?php echo $task['id']?>" method="POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle bg-red-500 text-black border-none hover:bg-red-600 hover:text-black">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
 
-                                <button class="btn btn-circle btn-accent">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle btn-primary">
+                                        <i class="fa-solid fa-spinner"></i>
+                                    </button>
+
+                                    <button class="btn btn-circle btn-accent">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
 
-            <div class = "card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_6.showModal()">
+            <div class = "h-24 card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_6.showModal(); changeStatus(0);">
                     <h1 class = "text-8xl m-auto text-blue-400">+</h1>
 
                     <form method="POST" action = "../index.php?action=add_task" enctype="multipart/form-data">
@@ -315,13 +320,13 @@
                                 <span class="label-text">Deadline</span>
                             </div>
                             <input type="text" name = "deadline" placeholder="Deadline of the task" class="input input-bordered w-full max-w-xs" />
-                            <input type="text" name = "status" class="input input-bordered w-full max-w-xs hidden" value = "0" />
+                            <input type="text" id = "statusForm" name = "status" class="input input-bordered w-full max-w-xs hidden" value = "0" />
                             <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
                             <button class="btn btn-success hidden">Submit</button>
                             </form>
                             <div class="modal-action">
                                 <form method = "dialog">
-                                    <button class="btn">Close</button>
+                                    <button class="btn" onclick="stoppedStatus()">Close</button>
                                 </form>
                             </div>
                         </div>
@@ -329,12 +334,94 @@
                 </div>
         </div>
 
-        <div class = "flex flex-col items-center">
+        <div class = "flex flex-col items-center gap-4">
             <h1 class="text-3xl text-black pb-6">Doing</h1>
+            <?php foreach ($tasksByStatus[1] as $task): ?>
+                <div class="card w-96 bg-white shadow-xl">
+                    <div class="card-body p-0">
+                        <div class="bg-blue-500 w-full p-4 rounded-t-lg flex flex-row justify-between">
+                            <h2 class="card-title text-white"><?php echo $task['title']; ?></h2>
+                            <div class="bg-sky-500 px-2 rounded">
+                                <p class="text-white"><i class="fa-solid fa-clock mr-2 my-2"></i><?php echo $task['deadline']; ?></p>
+                            </div>
+                        </div>
+                        <div class="card-actions p-6">
+                            <div class="flex flex-row justify-between w-full">
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+
+                                    <form action="../index.php?action=delete_task&task_id=<?php echo $task['id']?>" method="POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle bg-red-500 text-black border-none hover:bg-red-600 hover:text-black">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle btn-primary">
+                                        <i class="fa-solid fa-spinner"></i>
+                                    </button>
+
+                                    <button class="btn btn-circle btn-accent">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <div class = "h-24 card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_6.showModal(); changeStatus(1);">
+            <h1 class = "text-8xl m-auto text-blue-400">+</h1></div>
         </div>
 
-        <div class = "flex flex-col items-center">
+        <div class = "flex flex-col items-center gap-4">
             <h1 class="text-3xl text-black pb-6">Done</h1>
+            <?php foreach ($tasksByStatus[2] as $task): ?>
+                <div class="card w-96 bg-white shadow-xl">
+                    <div class="card-body p-0">
+                        <div class="bg-green-500 w-full p-4 rounded-t-lg flex flex-row justify-between">
+                            <h2 class="card-title text-white"><?php echo $task['title']; ?></h2>
+                            <div class="bg-green-400 px-2 rounded">
+                                <p class="text-white"><i class="fa-solid fa-clock mr-2 my-2"></i><?php echo $task['deadline']; ?></p>
+                            </div>
+                        </div>
+                        <div class="card-actions p-6">
+                            <div class="flex flex-row justify-between w-full">
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle bg-blue-500 text-black border-none hover:bg-blue-600 hover:text-black">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+
+                                    <form action="../index.php?action=delete_task&task_id=<?php echo $task['id']?>" method="POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle bg-red-500 text-black border-none hover:bg-red-600 hover:text-black">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="flex flex-row gap-2">
+                                    <button class="btn btn-circle btn-primary">
+                                        <i class="fa-solid fa-spinner"></i>
+                                    </button>
+
+                                    <button class="btn btn-circle btn-accent">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <div class = "h-24 card card-compact w-96 shadow-xl border-8 bg-blue-200 border-blue-400 border-dashed" onclick="my_modal_6.showModal(); changeStatus(2);">
+            <h1 class = "text-8xl m-auto text-blue-400">+</h1></div>
         </div>
     <?php else: ?>
         <h1 class="text-3xl text-black pb-6 col-span-1 lg:col-span-3">You don't have any project selected right now.</h1>

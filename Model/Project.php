@@ -82,5 +82,14 @@ class Project_Model {
     
         return $tasks;
     }
+
+    public function deleteTask($taskId) {
+        $taskId = $this->db->real_escape_string($taskId);
+    
+        $query = "DELETE FROM tasks WHERE id = $taskId";
+        $result = $this->db->query($query);
+    
+        return $result;
+    }
 }
 ?>

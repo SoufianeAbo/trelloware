@@ -44,3 +44,35 @@ const projectId = urlParams.get('projectId');
 if (projectId) {
     showTasks();
 }
+
+let statusVar = 0;
+let statusCondition = 0;
+let check = 0;
+const statusForm = document.getElementById("statusForm");
+
+function changeValue() {
+    statusForm.value = statusVar;
+    statusCondition = 1;
+}
+
+function changeStatus(argument) {
+    if (argument == 1 || argument == 2) {
+        console.log("hello world!" + argument);
+        if (argument == 0) {
+            if (check == 0) {
+                check = 1;
+            } else {
+                statusVar = argument;
+                check = 0;
+                changeValue();
+            }
+        } else {
+            statusVar = argument;
+            changeValue();
+        }
+    }
+}
+
+function stoppedStatus() {
+    console.log("i closed the dialog");
+}

@@ -25,5 +25,20 @@ $controller = new Project_Controller($model);
 $projects = $controller->getProjects();
 $projectId = isset($_GET['projectId']) ? $_GET['projectId'] : null;
 
+if ($projectId) {
+    $tasks = $controller->showTasks($_GET['projectId']);
+
+    $tasksByStatus = [
+        0 => [],
+        1 => [],
+        2 => []
+    ];
+    
+    foreach ($tasks as $task) {
+        $tasksByStatus[$task['status']][] = $task;
+    }
+    
+}
+
 include './View/dashboardUser.php';
 ?>

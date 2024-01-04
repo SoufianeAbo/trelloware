@@ -12,6 +12,7 @@ $controller = new Project_Controller($model);
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
+
 if ($action === 'add_project') {
     $controller->handleRequest();
 } elseif ($action === 'edit_project') {
@@ -20,6 +21,9 @@ if ($action === 'add_project') {
     $controller->deleteProject();
 } elseif ($action === 'add_task') {
     $controller->addTasks();
+} elseif ($action === 'delete_task') {
+    $taskID = $_GET['task_id'];
+    $controller->deleteTask($taskID);
 } else {
     echo "Invalid action.";
 }

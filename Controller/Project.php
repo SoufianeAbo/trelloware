@@ -109,5 +109,22 @@ class Project_Controller {
     
         return $tasks;
     }
+
+    public function deleteTask($taskId) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $result = $this->model->deleteTask($taskId);
+            $projectUser = $_POST['projectid'];
+
+            if ($result) {
+                $_SESSION['success_message'] = "Project successfully added!";
+                Header ("Location: ../dashboardUser.php?projectId=$projectUser");
+                exit;
+            } else {
+                echo "Error adding project to the database.";
+            }
+        } else {
+            $this->view->render();
+        }
+    }
 }
 ?>
