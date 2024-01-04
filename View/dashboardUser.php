@@ -367,13 +367,19 @@
                                 </div>
 
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle btn-primary">
-                                        <i class="fa-solid fa-spinner"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=0" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-neutral">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                        </button>
+                                    </form>
 
-                                    <button class="btn btn-circle btn-accent">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=2" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-accent">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -412,13 +418,19 @@
                                 </div>
 
                                 <div class="flex flex-row gap-2">
-                                    <button class="btn btn-circle btn-primary">
-                                        <i class="fa-solid fa-spinner"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=1" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fa-solid fa-spinner"></i>
+                                        </button>
+                                    </form>
 
-                                    <button class="btn btn-circle btn-accent">
-                                        <i class="fa-solid fa-check"></i>
-                                    </button>
+                                    <form action="../index.php?action=change_status&task_id=<?php echo $task['id']?>&status=0" method = "POST">
+                                        <input type="text" name = "projectid" class="input input-bordered w-full max-w-xs hidden" value = "<?php echo $_GET['projectId']?>" />
+                                        <button class="btn btn-circle btn-neutral">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
