@@ -5,6 +5,6 @@ session_start();
 if (isset($_SESSION['id'])) {
     User::checkAuthentication();
 } else {
-    include './View/login.html';
+    include './View/login.php';
 }
 ?>

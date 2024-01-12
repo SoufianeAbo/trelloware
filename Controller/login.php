@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (User::isValidCredentials($conn, $email, $password)) {
         User::initSession($conn, $email);
     } else {
-        echo "<p class = 'text-red-300'>Invalid username or password.</p>";
+        Header ("Location: ../login.php?incorrect");
     }
 }
 

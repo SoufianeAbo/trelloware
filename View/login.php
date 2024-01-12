@@ -18,6 +18,11 @@
                 <input type="password" name="passwordLog" id="password" class = "border border-gray-950 p-2 mb-2 pl-4 font-bold rounded" placeholder = "Password" required>
                 <input type="submit" value="Submit" class = "bg-blue-500 rounded p-2 text-white hover:bg-orange-500 transition-all cursor-pointer">
             </form>
+        <?php
+        if (isset($_GET["incorrect"])) {
+            echo "<p class = 'text-red-300'>Invalid username or password.</p>";
+        }
+        ?>
     <a href = "#" class = "text-white underline" id = "registerLink">Not registered? Click here to register</a>
         </div>
 
